@@ -3,11 +3,8 @@ from EmotionDetection.emotion_detection import emotion_predictor
 
 app = Flask("Emotion Analyzer")
 
-
 def compare_scores(score):
-    # Custom comparison function to treat None as a very small value
     return score if score is not None else float('-inf')
-
 
 @app.route("/emotionDetector")
 def sent_analyzer():
@@ -32,7 +29,6 @@ def sent_analyzer():
         'sadness': compare_scores(sadness_score)
     }
 
-    # Use custom comparison function
     dominant = max(emotion_score, key=emotion_score.get)
     if dominant is None:
         return "Invalid text! Please try again."
@@ -43,11 +39,9 @@ def sent_analyzer():
 
     return f"{string1} {string2} {string3}"
 
-
 @app.route("/")
 def render_index_page():
     return render_template('index.html')
-
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
