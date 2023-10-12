@@ -2,7 +2,7 @@ import json
 import requests
 
 
-def emotion_predictor(text_to_analyze):
+def emotion_detector(text_to_analyze):
     if not text_to_analyze.strip():
         return {
             'anger': None,
